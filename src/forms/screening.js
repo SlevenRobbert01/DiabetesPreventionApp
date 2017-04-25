@@ -42,7 +42,7 @@ const validateForm = (context) => {
   return valid;
 };
 
-class Screening extends Component {
+class ScreeningComponent extends Component {
   constructor(){
     super();
     this.state = {
@@ -56,7 +56,9 @@ class Screening extends Component {
     this._handleOnClick = this._handleOnClick.bind(this);
   }
   _handleOnClick(){
-    validateForm(this);
+    if(validateForm(this)){
+      window.appContainer.navigateTo('main');
+    }
   }
   _handleOnChange(value, type){
     const objToChange = {};
@@ -122,4 +124,4 @@ class Screening extends Component {
   }
 }
 
-module.exports = Screening;
+module.exports = ScreeningComponent;
