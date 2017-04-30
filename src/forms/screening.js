@@ -6,7 +6,9 @@ import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import DoneIcon from 'react-material-icons/icons/action/done';
-const _ = require('lodash')
+const actions = require('../actions/appActions.js');
+const store = require('../stores/appStore.js');
+const _ = require('lodash');
 
 const style = {
   marginLeft: 20
@@ -45,18 +47,13 @@ const validateForm = (context) => {
 class ScreeningComponent extends Component {
   constructor(){
     super();
-    this.state = {
-      personAge: {value: ''},
-      personWeight: {value: ''},
-      personLength: {value: ''},
-      personSmokes: false,
-      personMoves: false,
-      personMedication: false,
-    };
+    this.state = store.getScreeningData();
     this._handleOnClick = this._handleOnClick.bind(this);
+    this._onChange = this._onChange.bind(this);
   }
   _handleOnClick(){
     if(validateForm(this)){
+      actions.saveData(this.state);
       window.appContainer.navigateTo('main');
     }
   }
@@ -64,6 +61,15 @@ class ScreeningComponent extends Component {
     const objToChange = {};
     objToChange[type] = {value: value};
     this.setState(objToChange);
+  }
+  _onChange(){
+    this.setState({bmiResult: store.getBmiResult()})
+  }
+  componentDidMount() {
+    store.addChangeListener(this._onChange);
+  }
+  componentWillUnmount(){
+    store.removeChangeListener(this._onChange);
   }
   render() {
     const context = this;
