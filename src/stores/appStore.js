@@ -10,6 +10,7 @@ let screeningData = {
   personSmokes: false,
   personMoves: false,
   personMedication: false,
+  showResult: true,
 };
 
 const store = _.extend({

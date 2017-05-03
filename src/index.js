@@ -16,7 +16,6 @@ window.appContainer = {
     changeRoute(segmentOrRoute);
     window.location.href = '#' + segmentOrRoute;
   },
-  dispatcher: dispatcher,
 };
 
 ReactDOM.render(

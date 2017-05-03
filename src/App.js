@@ -10,12 +10,12 @@ const {Route, HashRouter} = require('react-router-dom');
 class App extends Component {
   render() {
     return (
-        <div style={{backgroundColor: '#E0E0E0',  height:'100vh'}}>
+        <div style={{height:'100vh'}}>
           <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
             <div>
               <AppBar showMenuIconButton={false} title="Diabetes Prevention App" />
               <HashRouter hashType={'noslash'}>
-                <div style={{maxWidth: 850, margin:'0 auto', padding:30}}>
+                <div style={{maxWidth: 850, margin:'0 auto'}}>
                   <Route exact path="/" component={ScreeningComponent}/>
                   <Route path="/main" component={MainComponent}/>
                 </div>

@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
-import DoneIcon from 'react-material-icons/icons/action/done';
+import {MdThumbUp,MdDone,MdWarning} from 'react-icons/lib/md';
 const actions = require('../actions/appActions.js');
 const store = require('../stores/appStore.js');
+const helpers = require('../helpers.js');
+const constants = require('../constants.js');
 const _ = require('lodash');
+import {green700,red800} from 'material-ui/styles/colors';
 
 const style = {
   marginLeft: 20
@@ -22,6 +24,11 @@ const styles = {
   },
   button: {
     margin: 20,
+  },
+  iconResultStyle: {
+    cursor: 'pointer', 
+    margin:'0px auto', 
+    display:'block'
   }
 };
 
@@ -54,7 +61,10 @@ class ScreeningComponent extends Component {
   _handleOnClick(){
     if(validateForm(this)){
       actions.saveData(this.state);
-      window.appContainer.navigateTo('main');
+      const bmi = helpers.calculateBMI(this.state.personWeight.value, this.state.personLength.value);
+      const bmiResult = helpers.verifyBMI(this.state.personAge.value, bmi);
+      const bmiRange = helpers.getBmiRange(this.state.personAge.value);
+      this.setState({bmi, bmiResult, bmiRange});
     }
   }
   _handleOnChange(value, type){
@@ -71,11 +81,10 @@ class ScreeningComponent extends Component {
   componentWillUnmount(){
     store.removeChangeListener(this._onChange);
   }
-  render() {
+  _renderScreeningForm(){
     const context = this;
     return (
-      <Paper zDepth={2}>
-        <Subheader>{'Screening'}</Subheader>
+      <div>
         <TextField
           floatingLabelText="Leeftijd"
           floatingLabelFixed={true}
@@ -123,8 +132,35 @@ class ScreeningComponent extends Component {
           onClick={this._handleOnClick}
           primary={true}
           style={styles.button}
-          icon={<DoneIcon/>}
+          icon={<MdDone/>}
         />
+      </div>
+    )
+  }
+  _renderResult(){
+    let IconComponent;
+    let IconColor;
+    if(this.state.bmiResult === constants.ScreeningResult.GOOD){
+      IconComponent = MdThumbUp;
+      IconColor = green700;
+    } else {
+      IconComponent = MdWarning;
+      IconColor = red800;
+    }
+
+    return (
+      <div>
+        <IconComponent size={200} color={IconColor} style={styles.iconResultStyle} onClick={() => window.appContainer.navigateTo('main')}/>
+      </div>
+    );
+  }
+  render() {
+    const content = this.state.bmiResult ? this._renderResult() : this._renderScreeningForm();
+
+    return (
+      <Paper zDepth={2}>
+        <div sytle={{display: 'block', margin: '0 auto'}}><h2>{'Screening'}</h2></div>
+        {content}
       </Paper>
     );
   }

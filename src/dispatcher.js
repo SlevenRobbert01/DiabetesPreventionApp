@@ -1,10 +1,10 @@
-var Dispatcher = require('flux').Dispatcher;
-var constants = require('./constants.js');
-var _ = require('lodash');
-var EventEmitter = require('events').EventEmitter;
-var isDispatching = false;
+const Dispatcher = require('flux').Dispatcher;
+const constants = require('./constants.js');
+const _ = require('lodash');
+const EventEmitter = require('events').EventEmitter;
+let isDispatching = false;
 
-var FocusDispatcher = _.extend(_.extend(new Dispatcher(), {
+const FocusDispatcher = _.extend(_.extend(new Dispatcher(), {
   isDispatching: function(){
     return isDispatching;
   },
@@ -21,7 +21,7 @@ var FocusDispatcher = _.extend(_.extend(new Dispatcher(), {
   },
 
   handleViewAction: function(action) {
-    var payload = {
+    const payload = {
       source: constants.PayloadSources.VIEW,
       action: action
     };
@@ -29,7 +29,7 @@ var FocusDispatcher = _.extend(_.extend(new Dispatcher(), {
   },
 
   handleBootAction: function(action) {
-    var payload = {
+    const payload = {
       source: constants.PayloadSources.BOOT,
       action: action
     };
@@ -38,7 +38,7 @@ var FocusDispatcher = _.extend(_.extend(new Dispatcher(), {
   },
 
   handleServerAction: function(action) {
-    var payload = {
+    const payload = {
       source: constants.PayloadSources.SERVER,
       action: action
     };
