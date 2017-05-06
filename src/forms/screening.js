@@ -4,13 +4,13 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
-import {MdThumbUp,MdDone,MdWarning} from 'react-icons/lib/md';
+import {MdThumbUp,MdDone,MdWarning,MdEdit,MdKeyboardArrowRight} from 'react-icons/lib/md';
 const actions = require('../actions/appActions.js');
 const store = require('../stores/appStore.js');
 const helpers = require('../helpers.js');
 const constants = require('../constants.js');
 const _ = require('lodash');
-import {green700,red800} from 'material-ui/styles/colors';
+import {green700,red800,orange400} from 'material-ui/styles/colors';
 
 const style = {
   marginLeft: 20
@@ -29,7 +29,9 @@ const styles = {
     cursor: 'pointer', 
     margin:'0px auto', 
     display:'block'
-  }
+  },
+  headerStyle: {marginLeft: 20, marginTop: 20, paddingTop: 10},
+  metaStyle: {marginLeft: 20, marginBottom: 30}
 };
 
 const validateForm = (context) => {
@@ -54,6 +56,7 @@ const validateForm = (context) => {
 class ScreeningComponent extends Component {
   constructor(){
     super();
+    //this.state = Object.assign(store.getScreeningData(), {bmiResult:constants.ScreeningResult.GOOD});
     this.state = store.getScreeningData();
     this._handleOnClick = this._handleOnClick.bind(this);
     this._onChange = this._onChange.bind(this);
@@ -62,7 +65,7 @@ class ScreeningComponent extends Component {
     if(validateForm(this)){
       actions.saveData(this.state);
       const bmi = helpers.calculateBMI(this.state.personWeight.value, this.state.personLength.value);
-      const bmiResult = helpers.verifyBMI(this.state.personAge.value, bmi);
+      const bmiResult = helpers.verifyBMI(this.state.personAge.value, bmi, this.state.personSmokes, this.state.personMoves);
       const bmiRange = helpers.getBmiRange(this.state.personAge.value);
       this.setState({bmi, bmiResult, bmiRange});
     }
@@ -85,6 +88,8 @@ class ScreeningComponent extends Component {
     const context = this;
     return (
       <div>
+        <div style={styles.headerStyle}><h2 style={{margin: 0}}>{'Welkom:'}</h2></div>
+        <div style={styles.metaStyle}><span>{'Bereken hier je kans op DM2'}</span></div>
         <TextField
           floatingLabelText="Leeftijd"
           floatingLabelFixed={true}
@@ -121,11 +126,11 @@ class ScreeningComponent extends Component {
             context._handleOnChange(value, 'personLength')}
           }/>
         <Divider />
-        <Checkbox label="Rookt u?" style={styles.checkbox} value={this.state.personSmokes}/>
+        <Checkbox label="Rookt u?" style={styles.checkbox} checked={this.state.personSmokes} onCheck={() => this.setState({personSmokes: !this.state.personSmokes})}/>
         <Divider />
-        <Checkbox label="Beweegt u veel?" style={styles.checkbox} value={this.state.personMoves}/>
+        <Checkbox label="Beweegt u veel?" style={styles.checkbox} checked={this.state.personMoves} onCheck={() => this.setState({personMoves: !this.state.personMoves})}/>
         <Divider />
-        <Checkbox label="Neemt u medicatie voor verhoogde bloeddruk?" style={styles.checkbox} value={this.state.personMedication}/>
+        <Checkbox label="Neemt u medicatie voor verhoogde bloeddruk?" style={styles.checkbox} checked={this.state.personMedication} onCheck={() => this.setState({personMedication: !this.state.personMedication})}/>
         <Divider />
         <RaisedButton 
           label="Start screening"
@@ -140,17 +145,39 @@ class ScreeningComponent extends Component {
   _renderResult(){
     let IconComponent;
     let IconColor;
+    let result;
     if(this.state.bmiResult === constants.ScreeningResult.GOOD){
       IconComponent = MdThumbUp;
       IconColor = green700;
-    } else {
+      result = `GOED BEZIG! Uw BMI waarde is ${this.state.bmi}`;
+    } else  if(this.state.bmiResult === constants.ScreeningResult.BAD){
       IconComponent = MdWarning;
       IconColor = red800;
+      result = `OPGELET! Kans op DM2. Uw BMI waarde is ${this.state.bmi}`;
+    } else {
+      IconComponent = MdWarning;
+      IconColor = orange400;
+      result = `OPGELET! Er zijn een paar aanpassingen nodig om risico te doen dalen! Uw BMI waarde is ${this.state.bmi}`;
     }
 
     return (
       <div>
+        <div style={styles.headerStyle}><h2 style={{margin: 0}}>{'Resultaat:'}</h2></div>
+        <div style={styles.metaStyle}><span>{result}</span></div>
         <IconComponent size={200} color={IconColor} style={styles.iconResultStyle} onClick={() => window.appContainer.navigateTo('main')}/>
+        <RaisedButton 
+          label="Wijzig gegevens"
+          onClick={() => {this.setState({bmiResult: null})}}
+          style={styles.button}
+          icon={<MdEdit/>}
+        />
+        <RaisedButton 
+          label="Verder"
+          onClick={() => window.appContainer.navigateTo('main')}
+          primary={true}
+          style={styles.button}
+          icon={<MdKeyboardArrowRight/>}
+        />
       </div>
     );
   }
@@ -159,7 +186,6 @@ class ScreeningComponent extends Component {
 
     return (
       <Paper zDepth={2}>
-        <div sytle={{display: 'block', margin: '0 auto'}}><h2>{'Screening'}</h2></div>
         {content}
       </Paper>
     );

@@ -43,14 +43,20 @@ module.exports = {
     const bmi = personWeight / ((personLength / 100) * (personLength / 100));
     return bmi.toFixed(2);
   },
-  verifyBMI(age,bmi){
+  verifyBMI(age,bmi, smoke, move){
     setMinMaxBMI(age);
     
     if(bmi >= MIN_BMI && bmi <= MAX_BMI){
+      if(smoke || !move){
+        return constants.ScreeningResult.WARNING;
+      }
       return constants.ScreeningResult.GOOD;
     }
 
-    return constants.ScreeningResult.BAD;
+    if(smoke || !move){
+      return constants.ScreeningResult.BAD;
+    }
+    return constants.ScreeningResult.WARNING;
   },
   getBmiRange(age){
     setMinMaxBMI(age);

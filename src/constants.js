@@ -13,6 +13,7 @@ module.exports = {
   },
   ScreeningResult: {
     BAD: 'BAD',
+    WARNING: 'WARNING',
     GOOD: 'GOOD',
   }
 };
