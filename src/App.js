@@ -5,8 +5,14 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 import ScreeningComponent from './forms/screening.js';
 import MainComponent from './forms/main.js';
-import FlatButton from 'material-ui/FlatButton';
 const {Route, HashRouter} = require('react-router-dom');
+import {MdEdit} from 'react-icons/lib/md';
+
+const iconStyle = {
+  cursor: 'pointer',
+  marginTop: '5px',
+  display:'block'
+};
 
 class App extends Component {
   render() {
@@ -14,7 +20,7 @@ class App extends Component {
         <div style={{height:'100vh'}}>
           <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
             <div>
-              <AppBar showMenuIconButton={false} title="Diabetes Prevention App" iconElementRight={<FlatButton label="Wijzigen" onClick={()=>window.appContainer.navigateTo('')}/>}/>
+              <AppBar showMenuIconButton={false} title="Diabetes Prevention App" iconElementRight={<MdEdit color={'#fff'} size={30} style={iconStyle} onClick={()=>window.appContainer.navigateTo('')}/>}/>
               <HashRouter hashType={'noslash'}>
                 <div style={{maxWidth: 850, margin:'0 auto'}}>
                   <Route exact path="/" component={ScreeningComponent}/>
