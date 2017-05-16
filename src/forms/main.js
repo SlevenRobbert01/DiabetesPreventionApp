@@ -4,7 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
-import {MdRestaurant, MdDirectionsRun, MdLink} from 'react-icons/lib/md';
+import {MdRestaurant, MdDirectionsRun, MdLink, MdChevronRight} from 'react-icons/lib/md';
 import {List, ListItem} from 'material-ui/List';
 import {cyan500} from 'material-ui/styles/colors';
 
@@ -23,6 +23,13 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
   },
+  buttonRecept: {
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 5,
+    marginRight: 5,
+    fontSize: 14,
+  },
   iconResultStyle: {
     cursor: 'pointer', 
     margin:'0px auto', 
@@ -38,9 +45,9 @@ const styles = {
 
 const DialogTypes = {
   Food: {
-    RECEPT1: 'Zoete aardappelcurry met zwarte boontjes',
+    RECEPT1: 'Aardappelcurry met boontjes',
     RECEPT2: 'Aardappel-zalmhamburgers',
-    RECEPT3: 'Stoofpotje met kip en kikkererwten',
+    RECEPT3: 'Stoofp. kip en kikkererwten',
   },
   Movement: {
     SIT_UPS: 'SIT_UPS',
@@ -49,18 +56,22 @@ const DialogTypes = {
   }
 }
 
+const CustomListItem = (props)=> (
+  <ListItem style={{fontSize: 14}} leftIcon={<MdChevronRight/>} {...props}/>
+);
+
 const DialogContentSitUps = () => (
   <div style={{marginTop: 20}}>
     <div style={styles.imgStyle}>
       <img style={{width: '100%'}} alt="sit-ups" src="images/situps.jpg"/>
     </div>
     <List>
-      <ListItem primaryText="Kies een platte vloer uit."/>
-      <ListItem primaryText="Ga met je rug plat op de grond liggen"/>
-      <ListItem primaryText="Houd niet je nek vast, maar houd je handen naast je hoofd en kom omhoog"/>
-      <ListItem primaryText="Kom zover omhoog tot je ellebogen je knieen raken"/>
-      <ListItem primaryText="Laat je langzaam weer zakken, zonder dat je rug de vloer raakt"/>
-      <ListItem primaryText="Herhaal voor het gewenst aantal reps"/>
+      <CustomListItem primaryText="Kies een platte vloer uit."/>
+      <CustomListItem primaryText="Ga met je rug plat op de grond liggen"/>
+      <CustomListItem primaryText="Houd niet je nek vast, maar houd je handen naast je hoofd en kom omhoog"/>
+      <CustomListItem primaryText="Kom zover omhoog tot je ellebogen je knieen raken"/>
+      <CustomListItem primaryText="Laat je langzaam weer zakken, zonder dat je rug de vloer raakt"/>
+      <CustomListItem primaryText="Herhaal voor het gewenst aantal reps"/>
     </List>
   </div>
 );
@@ -71,10 +82,10 @@ const DialogContentPushUps = () => (
       <img style={{width: '100%'}} alt="push-ups" src="images/pushup.jpg"/>
     </div>
     <List>
-      <ListItem primaryText="Neem een Push Up positie aan en plaats de handen dit keer dichterbij elkaar dan schouderbreedte"/>
-      <ListItem primaryText="Laat jezelf zakken totdat je borst bijna de grond raakt"/>
-      <ListItem primaryText="Duw jezelf nu weer omhoog"/>
-      <ListItem primaryText="Herhaal voor het gewenste aantal reps"/>
+      <CustomListItem primaryText="Neem een Push Up positie aan en plaats de handen dit keer dichterbij elkaar dan schouderbreedte"/>
+      <CustomListItem primaryText="Laat jezelf zakken totdat je borst bijna de grond raakt"/>
+      <CustomListItem primaryText="Duw jezelf nu weer omhoog"/>
+      <CustomListItem primaryText="Herhaal voor het gewenste aantal reps"/>
     </List>
   </div>
 );
@@ -85,17 +96,17 @@ const DialogContentSquat = () => (
       <img style={{width: '100%'}} alt="push-ups" src="images/squat.jpg"/>
     </div>
     <List>
-      <ListItem primaryText="Ga staan met je voeten iets wijder staan dan schouderbreedte"/>
-      <ListItem primaryText="Houd je borst recht omhoog en kijk voor je uit"/>
-      <ListItem primaryText="Dit is de beginpositie van de oefening"/>
-      <ListItem primaryText="Laat je langzaam door je knieen zakken, alsof je gaat zitten op een kruk, bal of stoel"/>
-      <ListItem primaryText="Strek je armen voor je uit wanneer je de neergaande beweging maakt"/>
-      <ListItem primaryText="Leg bij het zakken je lichaamsgewicht op je hielen"/>
-      <ListItem primaryText="Blijf voor je uit kijken terwijl je naar beneden zakt"/>
-      <ListItem primaryText="Kom parallel met de grond en druk vervolgens met je hielen jezelf weer omhoog"/>
-      <ListItem primaryText="Breng je armen weer naar beneden bij het omhoog komen"/>
-      <ListItem primaryText="Zorg ervoor dat je knieen niet op slot gaan wanneer je bovenin komt"/>
-      <ListItem primaryText="Herhaal voor het gewenste aantal reps"/>
+      <CustomListItem primaryText="Ga staan met je voeten iets wijder staan dan schouderbreedte"/>
+      <CustomListItem primaryText="Houd je borst recht omhoog en kijk voor je uit"/>
+      <CustomListItem primaryText="Dit is de beginpositie van de oefening"/>
+      <CustomListItem primaryText="Laat je langzaam door je knieen zakken, alsof je gaat zitten op een kruk, bal of stoel"/>
+      <CustomListItem primaryText="Strek je armen voor je uit wanneer je de neergaande beweging maakt"/>
+      <CustomListItem primaryText="Leg bij het zakken je lichaamsgewicht op je hielen"/>
+      <CustomListItem primaryText="Blijf voor je uit kijken terwijl je naar beneden zakt"/>
+      <CustomListItem primaryText="Kom parallel met de grond en druk vervolgens met je hielen jezelf weer omhoog"/>
+      <CustomListItem primaryText="Breng je armen weer naar beneden bij het omhoog komen"/>
+      <CustomListItem primaryText="Zorg ervoor dat je knieen niet op slot gaan wanneer je bovenin komt"/>
+      <CustomListItem primaryText="Herhaal voor het gewenste aantal reps"/>
     </List>
   </div>
 );
@@ -109,30 +120,30 @@ const DialogContentRecept1 = () => (
       />
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2} secondaryText="800 gram zoete aardappel (bataat), geschild en in stukjes gesneden"/>
-          <ListItem secondaryTextLines={2} secondaryText="4 middelgrote schoongemaakte wortelen in plakjes gesneden"/>
-          <ListItem secondaryTextLines={2} secondaryText="2 dunne preien in ringen gesneden"/>
-          <ListItem secondaryTextLines={2} secondaryText="2 blikken (400 g) zwarte boontjes (uitlekt gewicht ca. 265 gram)"/>
-          <ListItem secondaryTextLines={2} secondaryText="1 eetlepel currypasta"/>
-          <ListItem secondaryTextLines={2} secondaryText="100 ml kokosmelk"/>
-          <ListItem secondaryTextLines={2} secondaryText="1 bio limoen"/>
-          <ListItem secondaryTextLines={2} secondaryText="6 takjes koriander"/>
+          <CustomListItem primaryText="800 gram zoete aardappel (bataat), geschild en in stukjes gesneden"/>
+          <CustomListItem primaryText="4 middelgrote schoongemaakte wortelen in plakjes gesneden"/>
+          <CustomListItem primaryText="2 dunne preien in ringen gesneden"/>
+          <CustomListItem primaryText="2 blikken (400 g) zwarte boontjes (uitlekt gewicht ca. 265 gram)"/>
+          <CustomListItem primaryText="1 eetlepel currypasta"/>
+          <CustomListItem primaryText="100 ml kokosmelk"/>
+          <CustomListItem primaryText="1 bio limoen"/>
+          <CustomListItem primaryText="6 takjes koriander"/>
         </List>
       </CardText>
       <CardHeader title="Bereidingswijze"/>
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2} secondaryText="Fruit de prei in de olie met de currypasta."/>
-          <ListItem secondaryTextLines={2} secondaryText="Voeg de blokjes aardappel en wortel toe en roer goed om."/>
-          <ListItem secondaryTextLines={2} secondaryText="Voeg een bodempje water toe en stoof de groente gaar."/>
-          <ListItem secondaryTextLines={2} secondaryText="Laat de zwarte boontjes uitlekken, spoel ze af onder koud stromend water en schep ze samen met de kokosmelk door de gestoofde groenten. Warm alles goed door"/>
-          <ListItem secondaryTextLines={2} secondaryText="Breng het gerecht op smaak met wat geraspte limoenschil, limoensap en kleingesneden koriander"/>
+          <CustomListItem primaryText="Fruit de prei in de olie met de currypasta."/>
+          <CustomListItem primaryText="Voeg de blokjes aardappel en wortel toe en roer goed om."/>
+          <CustomListItem primaryText="Voeg een bodempje water toe en stoof de groente gaar."/>
+          <CustomListItem primaryText="Laat de zwarte boontjes uitlekken, spoel ze af onder koud stromend water en schep ze samen met de kokosmelk door de gestoofde groenten. Warm alles goed door"/>
+          <CustomListItem primaryText="Breng het gerecht op smaak met wat geraspte limoenschil, limoensap en kleingesneden koriander"/>
         </List>
       </CardText>
       <CardHeader title="Voedingswaarden"/>
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2}  secondaryText="Bevat per persoon: +/- 500 kcal en 60 g koolhydraten = 4,75 KH-ruilwaarden"/>
+          <CustomListItem primaryText="Bevat per persoon: +/- 500 kcal en 60 g koolhydraten = 4,75 KH-ruilwaarden"/>
         </List>
       </CardText>
     </Card>
@@ -148,40 +159,40 @@ const DialogContentRecept2 = () => (
       />
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2} secondaryText="450 g aardappelen geschild"/>
-          <ListItem secondaryTextLines={2} secondaryText="100 ml halfvolle melk"/>
-          <ListItem secondaryTextLines={2} secondaryText="peper, (zout) en muskaatnoot"/>
-          <ListItem secondaryTextLines={2} secondaryText="3 eetlepels vloeibare vetstof"/>
-          <ListItem secondaryTextLines={2} secondaryText="2 stronken witloof (200 g)"/>
-          <ListItem secondaryTextLines={2} secondaryText="sap van 1/2 citroen"/>
-          <ListItem secondaryTextLines={2} secondaryText="50 g paneermeel"/>
-          <ListItem secondaryTextLines={2} econdaryText="30 g Parmezaanse kaas"/>
-          <ListItem secondaryTextLines={2} secondaryText="1 eetlepel gehakte peterselie"/>
-          <ListItem secondaryTextLines={2} secondaryText="75 g gerookte zalm in sneetjes"/>
-          <ListItem secondaryTextLines={2} secondaryText="1 eiwit"/>
+          <CustomListItem primaryText="450 g aardappelen geschild"/>
+          <CustomListItem primaryText="100 ml halfvolle melk"/>
+          <CustomListItem primaryText="peper, (zout) en muskaatnoot"/>
+          <CustomListItem primaryText="3 eetlepels vloeibare vetstof"/>
+          <CustomListItem primaryText="2 stronken witloof (200 g)"/>
+          <CustomListItem primaryText="sap van 1/2 citroen"/>
+          <CustomListItem primaryText="50 g paneermeel"/>
+          <CustomListItem primaryText="30 g Parmezaanse kaas"/>
+          <CustomListItem primaryText="1 eetlepel gehakte peterselie"/>
+          <CustomListItem primaryText="75 g gerookte zalm in sneetjes"/>
+          <CustomListItem primaryText="1 eiwit"/>
         </List>
       </CardText>
       <CardHeader title="Bereidingswijze"/>
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2} secondaryText="Kook de aardappelen en pureer ze samen met de melk"/>
-          <ListItem secondaryTextLines={2} secondaryText="Kruid met peper, zout en muskaatnoot"/>
-          <ListItem secondaryTextLines={2} secondaryText="Maak het witloof schoon en snijd het heel fijn"/>
-          <ListItem secondaryTextLines={2} secondaryText="Stoof afgedekt gaar in 1 eetlepel hete vetstof"/>
-          <ListItem secondaryTextLines={2} secondaryText="Kruid met peper (en zout), laat goed uitlekken en afkoelen"/>
-          <ListItem secondaryTextLines={2} secondaryText="Meng het onder de puree"/>
-          <ListItem secondaryTextLines={2} secondaryText="Snipper de gerookte zalm fijn en meng deze eveneens onder de puree"/>
-          <ListItem secondaryTextLines={2} secondaryText="Vorm 8 platte hamburgertjes van +/- 75 g elk"/>
-          <ListItem secondaryTextLines={2} secondaryText="Klop het eiwit los met wat peper (en zout)"/>
-          <ListItem secondaryTextLines={2} secondaryText="Meng het paneermeel met de Parmezaanse kaas en de peterselie"/>
-          <ListItem secondaryTextLines={2} secondaryText="Wentel de hamburgertjes eerst door het eiwit en dan lichtjes door het paneermeelmengsel"/>
-          <ListItem secondaryTextLines={2} secondaryText="Bak in een anti-kleefpan in de overige vetstof"/>
+          <CustomListItem primaryText="Kook de aardappelen en pureer ze samen met de melk"/>
+          <CustomListItem primaryText="Kruid met peper, zout en muskaatnoot"/>
+          <CustomListItem primaryText="Maak het witloof schoon en snijd het heel fijn"/>
+          <CustomListItem primaryText="Stoof afgedekt gaar in 1 eetlepel hete vetstof"/>
+          <CustomListItem primaryText="Kruid met peper (en zout), laat goed uitlekken en afkoelen"/>
+          <CustomListItem primaryText="Meng het onder de puree"/>
+          <CustomListItem primaryText="Snipper de gerookte zalm fijn en meng deze eveneens onder de puree"/>
+          <CustomListItem primaryText="Vorm 8 platte hamburgertjes van +/- 75 g elk"/>
+          <CustomListItem primaryText="Klop het eiwit los met wat peper (en zout)"/>
+          <CustomListItem primaryText="Meng het paneermeel met de Parmezaanse kaas en de peterselie"/>
+          <CustomListItem primaryText="Wentel de hamburgertjes eerst door het eiwit en dan lichtjes door het paneermeelmengsel"/>
+          <CustomListItem primaryText="Bak in een anti-kleefpan in de overige vetstof"/>
         </List>
       </CardText>
       <CardHeader title="Voedingswaarden"/>
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2} secondaryText="Per persoon: 280 kcal - 2,5 Kh-waarde (dit is zonder geserveerde gekookte aardappels: reken 1 extra Kh-waarde per 70 g gekookte aardappel)"/>
+          <CustomListItem  primaryText="Per persoon: 280 kcal - 2,5 Kh-waarde (dit is zonder geserveerde gekookte aardappels: reken 1 extra Kh-waarde per 70 g gekookte aardappel)"/>
         </List>
       </CardText>
     </Card>
@@ -197,34 +208,34 @@ const DialogContentRecept3 = () => (
       />
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2} secondaryText="4 middelgrote tomaten (600g)"/>
-          <ListItem secondaryTextLines={2} secondaryText="1 courgette (500g)"/>
-          <ListItem secondaryTextLines={2} secondaryText="2 sjalotten"/>
-          <ListItem secondaryTextLines={2} secondaryText="500g kippenfilet"/>
-          <ListItem secondaryTextLines={2} secondaryText="1 blik kikkererwten (300g)"/>
-          <ListItem secondaryTextLines={2} secondaryText="100ml kippenbouillon (blokje) of kippenfond"/>
-          <ListItem secondaryTextLines={2} secondaryText="4 eetlepels olijfolie"/>
-          <ListItem secondaryTextLines={2} secondaryText="enkele takjes rozemarijn"/>
-          <ListItem secondaryTextLines={2} secondaryText="kippenkruiden"/>
+          <CustomListItem primaryText="4 middelgrote tomaten (600g)"/>
+          <CustomListItem primaryText="1 courgette (500g)"/>
+          <CustomListItem primaryText="2 sjalotten"/>
+          <CustomListItem primaryText="500g kippenfilet"/>
+          <CustomListItem primaryText="1 blik kikkererwten (300g)"/>
+          <CustomListItem primaryText="100ml kippenbouillon (blokje) of kippenfond"/>
+          <CustomListItem primaryText="4 eetlepels olijfolie"/>
+          <CustomListItem primaryText="enkele takjes rozemarijn"/>
+          <CustomListItem primaryText="kippenkruiden"/>
         </List>
       </CardText>
       <CardHeader title="Bereidingswijze"/>
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2} secondaryText="Snijd de kippenfilet in gelijke stukken en bestrooi ze met de kippenkruiden."/>
-          <ListItem secondaryTextLines={2} secondaryText="Verhit 2 eetlepels olijfolie in een pan en bak hierin de kippenblokjes aan alle zijden licht bruin."/>
-          <ListItem secondaryTextLines={2} secondaryText="Snijd de sjalotten in halve ringen en de courgette en de tomaten in gelijke stukken."/>
-          <ListItem secondaryTextLines={2} secondaryText="Stoof de sjalot aan in de resterende olijfolie en voeg er de courgette-, tomaten- en kippenblokjes aan toe. Kruid met peper en zout en de takjes rozemarijn."/>
-          <ListItem secondaryTextLines={2} secondaryText="Voeg de kippenbouillong toe en laat 15 min. sudderen."/>
-          <ListItem secondaryTextLines={2} secondaryText="Giet de kikkererwten uit in een vergiet en spoel ze af onder stromend water."/>
-          <ListItem secondaryTextLines={2} secondaryText="Voeg ze de laatste 5 min. toe."/>
-          <ListItem secondaryTextLines={2} secondaryText="Serveer dit stoofpotje met grof boerenbrood."/>
+          <CustomListItem primaryText="Snijd de kippenfilet in gelijke stukken en bestrooi ze met de kippenkruiden."/>
+          <CustomListItem primaryText="Verhit 2 eetlepels olijfolie in een pan en bak hierin de kippenblokjes aan alle zijden licht bruin."/>
+          <CustomListItem primaryText="Snijd de sjalotten in halve ringen en de courgette en de tomaten in gelijke stukken."/>
+          <CustomListItem primaryText="Stoof de sjalot aan in de resterende olijfolie en voeg er de courgette-, tomaten- en kippenblokjes aan toe. Kruid met peper en zout en de takjes rozemarijn."/>
+          <CustomListItem primaryText="Voeg de kippenbouillong toe en laat 15 min. sudderen."/>
+          <CustomListItem primaryText="Giet de kikkererwten uit in een vergiet en spoel ze af onder stromend water."/>
+          <CustomListItem primaryText="Voeg ze de laatste 5 min. toe."/>
+          <CustomListItem primaryText="Serveer dit stoofpotje met grof boerenbrood."/>
         </List>
       </CardText>
       <CardHeader title="Voedingswaarden"/>
       <CardText>
         <List>
-          <ListItem secondaryTextLines={2} secondaryText="Bevat per persoon: 350 kcal - 16g KH = 1,25 KHRW"/>
+          <CustomListItem primaryText="Bevat per persoon: 350 kcal - 16g KH = 1,25 KHRW"/>
         </List>
       </CardText>
     </Card>
@@ -277,18 +288,18 @@ class MainComponent extends Component {
             </CardText>
             <CardTitle title="Recepten" expandable={true}/>
             <CardText expandable={true}>
-              <RaisedButton 
+              <RaisedButton
                 label={DialogTypes.Food.RECEPT1}
                 onClick={() => this.handleOpen(DialogTypes.Food.RECEPT1,DialogTypes.Food.RECEPT1)}
-                style={styles.buttonExercise}/>
+                style={styles.buttonRecept}/>
               <RaisedButton 
                 label={DialogTypes.Food.RECEPT2}
                 onClick={() => this.handleOpen(DialogTypes.Food.RECEPT2,DialogTypes.Food.RECEPT2)}
-                style={styles.buttonExercise}/>
+                style={styles.buttonRecept}/>
               <RaisedButton 
                 label={DialogTypes.Food.RECEPT3}
                 onClick={() => this.handleOpen(DialogTypes.Food.RECEPT3,DialogTypes.Food.RECEPT3)}
-                style={styles.buttonExercise}/>
+                style={styles.buttonRecept}/>
             </CardText>
           </Card>
           <Card style={styles.cardStyle}>
