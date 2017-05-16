@@ -41,6 +41,7 @@ const styles = {
   linkDivStyle: {marginBottom: 20},
   linkStyle: {color: cyan500, textDecoration: 'none',fontSize: '11pt',fontWeight: 'bold'},
   imgStyle: {width: 200, margin: '0 auto'},
+  dialogStyle: {width: '100%',  maxWidth: '750'}
 };
 
 const DialogTypes = {
@@ -384,6 +385,7 @@ class MainComponent extends Component {
   _renderDialog(){
     return (
       <Dialog
+        contentStyle={styles.dialogStyle}
         title={this.state.dialogTitle}
         actions={this._renderActions()}
         modal={false}
