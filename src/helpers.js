@@ -47,12 +47,8 @@ module.exports = {
     setMinMaxBMI(age);
     
     if(bmi >= MIN_BMI && bmi <= MAX_BMI){
-      if(smoke || !move){
-        return constants.ScreeningResult.WARNING;
-      }
-      return constants.ScreeningResult.GOOD;
+      return constants.ScreeningResult.GOOD;      
     }
-
     if(smoke || !move){
       return constants.ScreeningResult.BAD;
     }
