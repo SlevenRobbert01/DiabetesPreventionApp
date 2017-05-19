@@ -4,7 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
-import {MdRestaurant, MdDirectionsRun, MdLink, MdChevronRight} from 'react-icons/lib/md';
+import {MdRestaurant, MdDirectionsRun, MdLink, MdChevronRight, MdInfoOutline} from 'react-icons/lib/md';
 import {List, ListItem} from 'material-ui/List';
 import {cyan500} from 'material-ui/styles/colors';
 
@@ -45,6 +45,14 @@ const styles = {
 };
 
 const DialogTypes = {
+  Info: {
+    WHAT: 'Wat is het?',
+    RECOGNIZE: 'Hoe te herkennen?',
+    CONSEQUENCES: 'Gevolgen',
+    RISCS: 'Risicofactoren',
+    PREVENT: 'Hoe te vermijden?',
+    STATS: 'Enkele cijfers',
+  },
   Food: {
     RECEPT1: 'Aardappelcurry met boontjes',
     RECEPT2: 'Aardappel-zalmhamburgers',
@@ -243,6 +251,102 @@ const DialogContentRecept3 = () => (
   </div>
 );
 
+const DialogContentInfoWhat = () => (
+  <div style={{marginTop: 20}}>
+    <Card style={styles.cardStyle}>
+      <CardText>
+        <span>
+            Diabetes Mellitus type 2 is één van de meest voorkomende chronische aandoeningen. Bij deze ziekte zijn er 2 problemen, enerzijds kunnen specifieke cellen in de pancreas (&#946;-cellen) niet voldoende insuline meer aanmaken, anderzijds is de werking van deze insuline verminderd waardoor ons lichaam resistent wordt tegen onze eigen gemaakte insuline. (Domus Medica, 2016)
+        </span>
+      </CardText>
+    </Card>
+  </div>
+)
+const DialogContentInfoRecognize = () => (
+  <div style={{marginTop: 20}}>
+    <Card style={styles.cardStyle}>
+      <CardText>
+        <span>Deze ziekte is soms moeilijk te herkennen. De meest voorkomende symptomen zijn</span>
+        <br/>
+        <br/>
+        <span><MdChevronRight/> frequent moeten plassen</span>
+        <br/>
+        <span><MdChevronRight/> vermoeidheid</span>
+        <br/>
+        <span><MdChevronRight/> veel gewichtsverlies</span>
+        <br/>
+        <span><MdChevronRight/> een verhoogd dorstgevoel (International Diabetes Fonds, 2016)</span>
+        <br/>
+        <br/>
+        <span>Als u deze tekenen bij uzelf waarneemt is het aangeraden de huisarts te contacteren.</span>
+      </CardText>
+    </Card>
+  </div>
+)
+const DialogContentInfoRiscs = () => (
+  <div style={{marginTop: 20}}>
+    <Card style={styles.cardStyle}>
+      <CardText>
+        <span>De allerbelangrijkste factoren die bijdragen tot het ontwikkelen van diabetes type 2 zijn een te <strong>hoog lichaamsgewicht</strong> en een <strong>ongezonde levensstijl</strong> waaronder roken, ongezonde voeding en weinig lichaamsbeweging (Gezondheid, 2013).
+        Als u deze factoren bezit is het aangeraden om verder een kijkje te nemen op deze applicatie.
+        </span>
+        <br/>
+        <br/>
+        <span>Belangrijk om te weten:</span>
+        <br/>
+        <span><MdChevronRight/> Als u overgewicht hebt en het lichaamsgewicht met voldoende lichaamsbeweging en gezonde voeding met 5% kan laten dalen, dan daalt de kans op diabetes type 2 met 30%</span>
+        <br/>
+        <span><MdChevronRight/> Ook als u rookt en beslist te stoppen, dan daalt de kans op diabetes type 2 met 50%.</span>
+      </CardText>
+    </Card>
+  </div>
+)
+const DialogContentInfoConsequences = () => (
+  <div style={{marginTop: 20}}>
+    <Card style={styles.cardStyle}>
+      <CardText>
+        <span>Doordat ons lichaam resistent wordt tegen onze insuline krijgen we een hogere bloedglucosespiegel, deze wordt bepaald door de hoeveelheid ‘suiker’ in ons bloed (hoeveelheid glucose dat is opgelost in  ons bloed). Als deze te hoog is kan dit ernstige gevolgen hebben voor ons lichaam. Zo is er bijvoorbeeld meer kans op hart- en vaatziekten, voetcomplicaties, problemen met de nieren, ogen en onze         zenuwen. (Diabetes Liga, 2016) Ook is er een verhoogde kans op overlijden.
+        </span>
+        <br/>
+        <span>Uit onderzoek is gebleken dat mensen met diabetes type 2 meer kans hebben op een depressie, cognitieve stoornissen, schizofrenie en seksuele dysfunctie. (Rutten et al., 2013)</span>
+      </CardText>
+    </Card>
+  </div>
+)
+const DialogContentInfoPrevent = () => (
+  <div style={{marginTop: 20}}>
+    <Card style={styles.cardStyle}>
+      <CardText>
+        <span>Met voldoende beweging, gezonde voeding en minderen of stoppen met roken (als u alle risicofactoren bezit) kan diabetes type 2 vermeden worden (Rutten et al., 2013).
+        </span>
+      </CardText>
+    </Card>
+  </div>
+)
+const DialogContentInfoStats = () => (
+  <div style={{marginTop: 20}}>
+    <Card style={styles.cardStyle}>
+      <CardText>
+        <span>
+          In 2015 zijn er wereldwijd 415 miljoen mensen met de diagnose van diabetes vastgesteld, uit onderzoek blijkt dat deze nog zal stijgen dat 642 miljoen mensen tegen het jaar 2020. (Internationaal Diabetes Fonds, 2016).
+        </span>
+        <br/>
+        <span>
+          Meer en meer jongeren lijden aan diabetes type 2, dit aantal is verdriedubbeld ten opzichte van 20 jaar geleden (Skau, et al., 2016). Dit komt door onze welvaart, langere levensverwachting en ongezondere levensstijl (Domus Medica, 2017). 
+        </span>
+        <br/>
+        <span>
+          Tegen 2030 zal 1 op de 10 mensen gediagnosticeerd zijn met diabetes.
+        </span>
+        <br/>
+        <span>
+          Ook komt overgewicht meer en meer voor op jongere leeftijd, het percentage van jongeren met overgewicht in het Vlaamse Gewest bevat 16%. Deze ligt hoger bij jongens dan bij meisjes (Vigez,2017).
+        </span>
+      </CardText>
+    </Card>
+  </div>
+)
+
 class MainComponent extends Component {
   constructor(){
     super();
@@ -252,13 +356,47 @@ class MainComponent extends Component {
     this.setState({open: false});
   }
   handleOpen = (dialogTitle, dialogType) => {
-    this.setState({open: true, dialogTitle, dialogType});
+    this.setState({open: true, dialogTitle, dialogType: dialogType || dialogTitle});
   }
   _renderPaper(){
     return (
       <Paper zDepth={2}>
-        <div style={styles.headerStyle}><h2 style={{margin: 0}}>{'Informatie omtrent DM2:'}</h2></div>
         <div style={{padding: 20}}>
+          <Card style={styles.cardStyle}>
+            <CardHeader
+              title="Info"
+              subtitle="Informatie omtrent diabetes type 2"
+              avatar={<MdInfoOutline size={30}/>}
+              actAsExpander={true}
+              showExpandableButton={true}
+            />
+            <CardText expandable={true}>
+              <RaisedButton
+                label={DialogTypes.Info.WHAT}
+                onClick={() => this.handleOpen(DialogTypes.Info.WHAT,DialogTypes.Info.WHAT)}
+                style={styles.buttonRecept}/>
+              <RaisedButton
+                label={DialogTypes.Info.RECOGNIZE}
+                onClick={() => this.handleOpen(DialogTypes.Info.RECOGNIZE)}
+                style={styles.buttonRecept}/>
+              <RaisedButton
+                label={DialogTypes.Info.CONSEQUENCES}
+                onClick={() => this.handleOpen(DialogTypes.Info.CONSEQUENCES)}
+                style={styles.buttonRecept}/>
+              <RaisedButton
+                label={DialogTypes.Info.RISCS}
+                onClick={() => this.handleOpen(DialogTypes.Info.RISCS)}
+                style={styles.buttonRecept}/>
+             <RaisedButton
+                label={DialogTypes.Info.PREVENT}
+                onClick={() => this.handleOpen(DialogTypes.Info.PREVENT)}
+                style={styles.buttonRecept}/>
+              <RaisedButton
+                label={DialogTypes.Info.STATS}
+                onClick={() => this.handleOpen(DialogTypes.Info.STATS)}
+                style={styles.buttonRecept}/>
+            </CardText>
+          </Card>
           <Card style={styles.cardStyle}>
             <CardHeader
               title="Voedingsadvies"
@@ -378,6 +516,18 @@ class MainComponent extends Component {
       return <DialogContentRecept2/>;
     case DialogTypes.Food.RECEPT3:
       return <DialogContentRecept3/>;
+    case DialogTypes.Info.WHAT:
+      return <DialogContentInfoWhat/>;
+    case DialogTypes.Info.RECOGNIZE:
+      return <DialogContentInfoRecognize/>;
+    case DialogTypes.Info.CONSEQUENCES:
+      return <DialogContentInfoConsequences/>;
+    case DialogTypes.Info.RISCS:
+      return <DialogContentInfoRiscs/>;
+    case DialogTypes.Info.PREVENT:
+     return <DialogContentInfoPrevent/>
+    case DialogTypes.Info.STATS:
+     return <DialogContentInfoStats/>
     default:
       return null;
     }
